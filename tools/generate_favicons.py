@@ -44,7 +44,7 @@ with Image.open(SRC) as im:
         print(f'Wrote {out} ({size[0]}x{size[1]})')
 
     # Create .ico with multiple sizes
-    ico_out = ROOT / 'favicon.ico'
+    ico_out = out_dir / 'favicon.ico'
     ico_sizes = [(16, 16), (32, 32)]
     ico_images = [im.resize(s, Image.LANCZOS) for s in ico_sizes]
     # PIL supports saving multiple sizes in an ICO when passing a list of images
