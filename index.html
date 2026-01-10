@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flow Velocity Calculator - Drilling</title>
-    <link rel="icon" type="image/jpeg" href="/KR_fav.jpg">
+    <!-- Favicons generated from KR_fav.jpg -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+    <!-- JPG fallback (original) -->
+    <link rel="icon" type="image/jpeg" href="KR_fav.jpg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -114,6 +120,23 @@
                     <div class="annulus-velocity" aria-label="Annulus velocity"><span class="flow-label">Annulus</span><span id="velocity-annulus">-</span><span class="unit"> m/s</span></div>
                     <div id="tj-warning" class="warning" role="alert" aria-live="polite">Drill pipe tool joint OD larger than casing size!</div>
                     <div id="holeclean-warning" class="warning" role="alert" aria-live="polite" style="display:none;">Minimum velocity for hole cleaning is 0.8 m/s</div>
+                </div>
+
+                <div class="reynolds-control">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="showReynoldsCheckbox">
+                        Show Reynolds numbers
+                    </label>
+                    <div class="reynolds-box" id="reynoldsBox" style="display:none;">
+                        <div class="reynolds-inputs">
+                            <label for="kinematicVisc" class="small-label">Kinematic viscosity (m²/s)</label>
+                            <input type="number" id="kinematicVisc" step="0.000001" value="0.000001">
+                        </div>
+                        <div class="reynolds-results">
+                            <div>Drill pipe: <strong id="rePipe">-</strong></div>
+                            <div>Annulus: <strong id="reAnnulus">-</strong></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
