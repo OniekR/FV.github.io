@@ -82,8 +82,34 @@ h1 {
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  grid-template-areas:
+    "input diagram"
+    "reynolds reynolds"
+    "foot foot";
+  gap: 20px;
+  align-items: start;
   margin-bottom: 24px;
+}
+
+.input-section {
+  grid-area: input;
+}
+
+.diagram-section {
+  grid-area: diagram;
+}
+
+.reynolds-section {
+  grid-area: reynolds;
+  padding: 12px;
+  background: #f9fbfd;
+  border: 1px solid #e6f4fb;
+  border-radius: 6px;
+  margin-bottom: 32px;
+}
+
+.formula {
+  grid-area: foot;
 }
 
 .input-section h2,
@@ -523,6 +549,29 @@ svg {
   color: var(--text-color);
 }
 
+/* small badge that appears when Reynolds numbers are enabled */
+.wip-badge {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff3cd;
+  color: #856404;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: none;
+  white-space: nowrap;
+  z-index: 600;
+  pointer-events: none;
+}
+
+.toggle-label input[type="checkbox"]:checked ~ .wip-badge {
+  display: block;
+}
+
 /* animated reynolds box */
 .reynolds-box {
   margin-top: 8px;
@@ -736,6 +785,37 @@ svg {
 }
 
 /* keep stepper tight and to the right of the number input */
+
+.calculations-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.calculations-row > .reynolds-steps,
+.calculations-row > .annulus-panel {
+  flex: 1 1 45%;
+}
+
+.reynolds-section .reynolds-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+@media (max-width: 880px) {
+  .content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "input"
+      "diagram"
+      "reynolds"
+      "foot";
+  }
+  .calculations-row {
+    flex-direction: column;
+  }
+}
 
 /* Tools list styling for landing page */
 .tools-list {
