@@ -1,196 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flow Velocity Calculator - Drilling</title>
     <!-- Favicons generated from KR_fav.jpg -->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
-    <link rel="shortcut icon" href="assets/favicons/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicons/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicons/favicon-32x32.png"
+    />
+    <link rel="shortcut icon" href="assets/favicons/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicons/apple-touch-icon.png"
+    />
     <!-- JPG fallback (original) -->
-    <link rel="icon" type="image/jpeg" href="KR_fav.jpg">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="icon" type="image/jpeg" href="KR_fav.jpg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <header>
-        <div class="headerWrapper">
-            <div>
-                <a href="https://insight.equinor.com/"><img
-                    class="firmalogo"
-                    src="/KR_fav.jpg"
-                    alt="Equinor logo"
-                /></a>
-            </div>
-            <nav>
-                <div class="linker">
-                    <a class="linkHome" href="https://oniekr.github.io/">Home</a>
-                    <div class="linkVF href="https://oniekr.github.io/pressurevolume.github.io/">Pressure/volume calculator</div>
-                   <!-- <a class="linkSNA" href="../Snorre wells/Snorre A/SNA_WH_Overview.html">Snorre A wellhead Overview</a>
+      <div class="headerWrapper">
+        <div>
+          <a href="https://insight.equinor.com/"
+            ><img class="firmalogo" src="KR_fav.jpg" alt="Equinor logo"
+          /></a>
+        </div>
+        <nav>
+          <div class="linker">
+            <a class="linkHome" href="https://oniekr.github.io/">Home</a>
+            <a
+              class="linkVF"
+              href="https://oniekr.github.io/pressurevolume.github.io/"
+              >Pressure/volume calculator</a
+            >
+            <!-- <a class="linkSNA" href="../Snorre wells/Snorre A/SNA_WH_Overview.html">Snorre A wellhead Overview</a>
                    <div class="linkVF">Velocity</div>
                    <div class="linkTools">Tools</div>-->
-                    
-                </div>
-            </nav>
-        </div>
+          </div>
+        </nav>
+      </div>
     </header>
     <div class="container">
-        <h1>⚙️ Flow Velocity Calculator</h1>
-        <p class="subtitle">Keino - Pipe & Annulus Flow</p>
-        
-        <div class="content">
-            <!-- Input Section -->
-            <div class="input-section">
-                <h2>Calculate Velocity</h2>
-                
-                <div class="input-group compact">
-                    <div class="label-row">
-                        <label for="flowRate">Flow Rate (L/min)</label>
-                        <div class="quick-buttons" role="group" aria-label="Quick flow rates">
-                            <button type="button" class="quick-btn" data-value="1000">1000</button>
-                            <button type="button" class="quick-btn" data-value="2000">2000</button>
-                            <button type="button" class="quick-btn" data-value="3000">3000</button>
-                            <button type="button" class="quick-btn" data-value="4000">4000</button>
-                        </div>
-                    </div>
-                    <div class="number-stepper">
-                        <input type="number" id="flowRate" placeholder="e.g., 500" value="500" min="0" step="100">
-                        <div class="controls-vertical">
-                            <div class="stepper-controls" aria-hidden="false">
-                                <button type="button" class="stepper-button" data-action="increment" aria-label="Increase flow rate">▲</button>
-                                <button type="button" class="stepper-button" data-action="decrement" aria-label="Decrease flow rate">▼</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>     
-                
-                <div class="input-group">
-                    <label for="drillSize">Drill pipe size</label>
-                    <div class="drill-row">
-                        <select id="drillSize">
-                            <option value="2.875" data-id="2.151" data-od="2.875" data-tjod="3.375">2 7/8"</option>
-                            <option value="3.5" data-id="2.602" data-od="3.5" data-tjod="5">3 1/2"</option>
-                            <option value="4" selected data-id="3.34" data-od="4" data-tjod="4.875">4"</option>
-                            <option value="5" data-id="4.276" data-od="5" data-tjod="6.625">5"</option>
-                            <option value="5.875" data-id="5.153" data-od="5.875" data-tjod="7">5 7/8"</option>
-                            <option value="6.625" data-id="5.901" data-od="6.625" data-tjod="8">6 5/8"</option>
-                        </select>
+      <h1>⚙️ Flow Velocity Calculator</h1>
+      <p class="subtitle">Keino - Pipe & Annulus Flow</p>
 
-                        <div class="drill-dims">
-                            <div class="dim">
-                                <label for="drillID" class="small-label">ID (in)</label>
-                                <input type="number" class="no-spin" id="drillID" step="0.001" placeholder="e.g., 2.151">
-                            </div>
-                            <div class="dim">
-                                <label for="drillOD" class="small-label">OD (in)</label>
-                                <input type="number" class="no-spin" id="drillOD" step="0.001" placeholder="e.g., 2.875">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="content">
+        <!-- Input Section -->
+        <div class="input-section">
+          <h2>Calculate Velocity</h2>
 
-                <div class="input-group">
-                    <label for="casingSize">Casing size</label>
-                    <div class="casing-row">
-                        <select id="casingSize">
-                            <option value="3.833" data-id="3.833">4 1/2" 12.6#</option>
-                            <option value="4.276" data-id="4.276">5" 18#</option>
-                            <option value="4.778" data-id="4.778">5 1/2" 20#</option>
-                            <option value="6.184" data-id="6.184">7" 29#</option>
-                            <option value="8.535" data-id="8.535" selected>9 5/8" 53.5#</option>
-                            <option value="12.347" data-id="12.347">13 3/8" 72#</option>
-                            <option value="12.375" data-id="12.375">13 5/8" 88.2#</option>
-                            <option value="17.755" data-id="17.755">18 5/8" 87.5#</option>
-                            <option value="18.73" data-id="18.73">20" 133#</option>
-                            <option value="17.5" data-id="17.5">Drilling riser</option>
-                        </select>
-
-                        <div class="casing-dims">
-                            <div class="dim">
-                                <label for="casingID" class="small-label">ID (in)</label>
-                                <input type="number" class="no-spin" id="casingID" step="0.001" placeholder="e.g., 8.535">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flow-results">
-                    <div class="pipe-velocity" aria-label="Drill pipe velocity"><span class="flow-label">Drill pipe</span><span id="velocity-pipe">-</span><span class="unit"> m/s</span></div>
-                    <div class="annulus-velocity" aria-label="Annulus velocity"><span class="flow-label">Annulus</span><span id="velocity-annulus">-</span><span class="unit"> m/s</span></div>
-                    <div id="tj-warning" class="warning" role="alert" aria-live="polite">Drill pipe tool joint OD larger than casing size!</div>
-                    <div id="holeclean-warning" class="warning" role="alert" aria-live="polite" style="display:none;">Minimum velocity for hole cleaning is 0.8 m/s</div>
-                </div>
-
-                <div class="reynolds-control">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="showReynoldsCheckbox">
-                        Show Reynolds numbers
-                    </label>
-                    <div class="reynolds-box" id="reynoldsBox" style="display:none;">
-                        <div class="reynolds-inputs">
-                            <label for="kinematicVisc" class="small-label">Kinematic viscosity (m²/s)</label>
-                            <input type="number" id="kinematicVisc" step="0.000001" value="0.000001">
-                        </div>
-                        <div class="reynolds-results">
-                            <div>Drill pipe: <strong id="rePipe">-</strong></div>
-                            <div>Annulus: <strong id="reAnnulus">-</strong></div>
-                        </div>
-                    </div>
-                </div>
+          <div class="input-group compact">
+            <div class="label-row">
+              <label for="flowRate">Flow Rate (L/min)</label>
+              <div
+                class="quick-buttons"
+                role="group"
+                aria-label="Quick flow rates"
+              >
+                <button type="button" class="quick-btn" data-value="1000">
+                  1000
+                </button>
+                <button type="button" class="quick-btn" data-value="2000">
+                  2000
+                </button>
+                <button type="button" class="quick-btn" data-value="3000">
+                  3000
+                </button>
+                <button type="button" class="quick-btn" data-value="4000">
+                  4000
+                </button>
+              </div>
             </div>
-            
-            <!-- Diagram Section -->
-            <div class="diagram-section">
-                <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Casing -->
-                    <rect x="30" y="40" width="140" height="200" fill="none" stroke="#333" stroke-width="8" rx="5"/>
-                    
-                    <!-- Drill Pipe (thinner) -->
-                    <rect x="75" y="45" width="50" height="160" fill="#c0c0c0" stroke="#666" stroke-width="2" rx="3"/>
-                    
-                    <!-- Annulus (stripe removed) -->
-                    <!-- removed blue dashed annulus visual per request -->
-                    
-                    <!-- Annulus (stripe removed) -->
-                    <!-- removed blue dashed annulus visual per request -->
-
-                    <!-- Down arrow (flow down pipe) -->
-                    <g id="down-flow">
-                        <line x1="100" y1="80" x2="100" y2="120" stroke="#27ae60" stroke-width="3" stroke-linecap="round"/>
-                        <polygon points="100,125 96,115 104,115" fill="#27ae60"/>
-                        <text x="100" y="72" text-anchor="middle" font-size="12" fill="#27ae60" font-weight="bold">DOWN</text>
-                    </g>
-                    
-                    <!-- Up arrow (flow up annulus) - mirrored to opposite side -->
-                    <g id="up-flow" transform="translate(10,0)">
-                        <line x1="45" y1="80" x2="45" y2="120" stroke="#e74c3c" stroke-width="3" stroke-linecap="round"/>
-                        <polygon points="45,75 41,85 49,85" fill="#e74c3c"/>
-                        <text x="45" y="72" text-anchor="middle" font-size="12" fill="#e74c3c" font-weight="bold">UP</text>
-                    </g>
-                    
-                    <!-- Labels -->
-                    <text x="100" y="25" font-size="14" font-weight="bold" text-anchor="middle" fill="#E31B23">Well Schematic</text>
-                    
-                    <!-- Drill Pipe Velocity Output -->
-                    <text id="drill-pipe-velocity" x="100" y="140" text-anchor="middle" font-size="8" fill="#27ae60" font-weight="bold">- m/s</text>
-                    <!-- Annulus Velocity Output -->
-                    <text id="annulus-velocity-output" x="55" y="140" text-anchor="middle" font-size="8" fill="#e74c3c" font-weight="bold">- m/s</text>
-                </svg>
+            <div class="number-stepper">
+              <input
+                type="number"
+                id="flowRate"
+                placeholder="e.g., 500"
+                value="500"
+                min="0"
+                step="100"
+              />
+              <div class="controls-vertical">
+                <div class="stepper-controls" aria-hidden="false">
+                  <button
+                    type="button"
+                    class="stepper-button"
+                    data-action="increment"
+                    aria-label="Increase flow rate"
+                  >
+                    ▲
+                  </button>
+                  <button
+                    type="button"
+                    class="stepper-button"
+                    data-action="decrement"
+                    aria-label="Decrease flow rate"
+                  >
+                    ▼
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div class="input-group">
+            <label for="drillSize">Drill pipe size</label>
+            <div class="drill-row">
+              <select id="drillSize">
+                <option
+                  value="2.875"
+                  data-id="2.151"
+                  data-od="2.875"
+                  data-tjod="3.375"
+                >
+                  2 7/8"
+                </option>
+                <option value="3.5" data-id="2.602" data-od="3.5" data-tjod="5">
+                  3 1/2"
+                </option>
+                <option
+                  value="4"
+                  selected
+                  data-id="3.34"
+                  data-od="4"
+                  data-tjod="4.875"
+                >
+                  4"
+                </option>
+                <option value="5" data-id="4.276" data-od="5" data-tjod="6.625">
+                  5"
+                </option>
+                <option
+                  value="5.875"
+                  data-id="5.153"
+                  data-od="5.875"
+                  data-tjod="7"
+                >
+                  5 7/8"
+                </option>
+                <option
+                  value="6.625"
+                  data-id="5.901"
+                  data-od="6.625"
+                  data-tjod="8"
+                >
+                  6 5/8"
+                </option>
+              </select>
+
+              <div class="drill-dims">
+                <div class="dim">
+                  <label for="drillID" class="small-label">ID (in)</label>
+                  <input
+                    type="number"
+                    class="no-spin"
+                    id="drillID"
+                    step="0.001"
+                    placeholder="e.g., 2.151"
+                  />
+                </div>
+                <div class="dim">
+                  <label for="drillOD" class="small-label">OD (in)</label>
+                  <input
+                    type="number"
+                    class="no-spin"
+                    id="drillOD"
+                    step="0.001"
+                    placeholder="e.g., 2.875"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="casingSize">Casing size</label>
+            <div class="casing-row">
+              <select id="casingSize">
+                <option value="3.833" data-id="3.833">4 1/2" 12.6#</option>
+                <option value="4.276" data-id="4.276">5" 18#</option>
+                <option value="4.778" data-id="4.778">5 1/2" 20#</option>
+                <option value="6.184" data-id="6.184">7" 29#</option>
+                <option value="8.535" data-id="8.535" selected>
+                  9 5/8" 53.5#
+                </option>
+                <option value="12.347" data-id="12.347">13 3/8" 72#</option>
+                <option value="12.375" data-id="12.375">13 5/8" 88.2#</option>
+                <option value="17.755" data-id="17.755">18 5/8" 87.5#</option>
+                <option value="18.73" data-id="18.73">20" 133#</option>
+                <option value="17.5" data-id="17.5">Drilling riser</option>
+              </select>
+
+              <div class="casing-dims">
+                <div class="dim">
+                  <label for="casingID" class="small-label">ID (in)</label>
+                  <input
+                    type="number"
+                    class="no-spin"
+                    id="casingID"
+                    step="0.001"
+                    placeholder="e.g., 8.535"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-results">
+            <div class="pipe-velocity" aria-label="Drill pipe velocity">
+              <span class="flow-label">Drill pipe</span
+              ><span id="velocity-pipe">-</span><span class="unit"> m/s</span>
+            </div>
+            <div class="annulus-velocity" aria-label="Annulus velocity">
+              <span class="flow-label">Annulus</span
+              ><span id="velocity-annulus">-</span
+              ><span class="unit"> m/s</span>
+            </div>
+            <div
+              id="tj-warning"
+              class="warning"
+              role="alert"
+              aria-live="polite"
+            >
+              Drill pipe tool joint OD larger than casing size!
+            </div>
+            <div
+              id="holeclean-warning"
+              class="warning"
+              role="alert"
+              aria-live="polite"
+            >
+              Minimum velocity for hole cleaning is 0.8 m/s
+            </div>
+          </div>
+
+          <div class="reynolds-control">
+            <label class="toggle-label">
+              <input type="checkbox" id="showReynoldsCheckbox" />
+              <span class="toggle-switch"></span>
+              <span class="toggle-text">Show Reynolds numbers</span>
+            </label>
+            <div class="reynolds-box hidden" id="reynoldsBox">
+              <div class="reynolds-inputs">
+                <div class="viscosity-mode">
+                  <label class="mode-toggle">
+                    <input type="checkbox" id="useSimpleAV" />
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-text"
+                      >Use Fann Viscometer Readings</span
+                    >
+                  </label>
+                </div>
+
+                <div id="simpleAVSection">
+                  <div class="input-row">
+                    <label for="apparentViscosity" class="small-label"
+                      >Apparent Viscosity (AV) at 600 RPM</label
+                    >
+                    <input
+                      type="number"
+                      id="apparentViscosity"
+                      step="0.1"
+                      placeholder="e.g., 45"
+                    />
+                    <small class="help-text">AV = Viscometer reading ÷ 2</small>
+                  </div>
+                </div>
+
+                <div id="detailedViscometerSection" class="hidden">
+                  <div class="viscometer-readings">
+                    <label class="section-label"
+                      >Fann Viscometer Readings</label
+                    >
+                    <div class="rpm-grid">
+                      <div class="rpm-input">
+                        <label for="rpm600" class="rpm-label">600 RPM</label>
+                        <input
+                          type="number"
+                          id="rpm600"
+                          step="0.1"
+                          placeholder="0.0"
+                        />
+                      </div>
+                      <div class="rpm-input">
+                        <label for="rpm300" class="rpm-label">300 RPM</label>
+                        <input
+                          type="number"
+                          id="rpm300"
+                          step="0.1"
+                          placeholder="0.0"
+                        />
+                      </div>
+                      <div class="rpm-input">
+                        <label for="rpm200" class="rpm-label">200 RPM</label>
+                        <input
+                          type="number"
+                          id="rpm200"
+                          step="0.1"
+                          placeholder="0.0"
+                        />
+                      </div>
+                      <div class="rpm-input">
+                        <label for="rpm100" class="rpm-label">100 RPM</label>
+                        <input
+                          type="number"
+                          id="rpm100"
+                          step="0.1"
+                          placeholder="0.0"
+                        />
+                      </div>
+                      <div class="rpm-input">
+                        <label for="rpm60" class="rpm-label">60 RPM</label>
+                        <input
+                          type="number"
+                          id="rpm60"
+                          step="0.1"
+                          placeholder="0.0"
+                        />
+                      </div>
+                      <div class="rpm-input">
+                        <label for="rpm30" class="rpm-label">30 RPM</label>
+                        <input
+                          type="number"
+                          id="rpm30"
+                          step="0.1"
+                          placeholder="0.0"
+                        />
+                      </div>
+                      <div class="rpm-input">
+                        <label for="rpm6" class="rpm-label">6 RPM</label>
+                        <input
+                          type="number"
+                          id="rpm6"
+                          step="0.1"
+                          placeholder="0.0"
+                        />
+                      </div>
+                      <div class="rpm-input">
+                        <label for="rpm3" class="rpm-label">3 RPM</label>
+                        <input
+                          type="number"
+                          id="rpm3"
+                          step="0.1"
+                          placeholder="0.0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rheology-results">
+                  <div>
+                    Plastic Viscosity (PV): <strong id="pvValue">-</strong> cP
+                  </div>
+                  <div>
+                    Yield Point (YP): <strong id="ypValue">-</strong> lbf/100ft²
+                  </div>
+                  <div>
+                    Apparent Viscosity (AV): <strong id="avValue">-</strong> cP
+                  </div>
+                </div>
+
+                <!-- Step-by-step calculation (shown when Reynolds numbers are visible) -->
+                <div class="calculations-container">
+                  <div
+                    id="reynoldsSteps"
+                    class="reynolds-steps hidden"
+                    role="region"
+                    aria-label="Drill pipe calculations"
+                  >
+                    <!-- Populated dynamically from script.js -->
+                  </div>
+                  <div
+                    id="annulusPanel"
+                    class="annulus-panel hidden"
+                    role="region"
+                    aria-live="polite"
+                    aria-label="Annulus calculations"
+                  ></div>
+                </div>
+              </div>
+              <div class="reynolds-results">
+                <div>Drill pipe: <strong id="rePipe">-</strong></div>
+                <div>Annulus: <strong id="reAnnulus">-</strong></div>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <!-- Formula Section -->
-        <div class="formula">
-            <h3>📐 Calculation Formula</h3>
-            <div class="formula-text">
-                Velocity (m/s) = Flow Rate (L/min) ÷ 60 ÷ Area (cm²) ÷ 10,000<br><br>
-                <strong>Or:</strong> v = Q / (60 × A)<br>
-                where Q = Flow rate in L/min, A = Cross-sectional area in cm²
-            </div>
+
+        <!-- Diagram Section -->
+        <div class="diagram-section">
+          <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Casing -->
+            <rect
+              x="30"
+              y="40"
+              width="140"
+              height="200"
+              fill="none"
+              stroke="#333"
+              stroke-width="8"
+              rx="5"
+            />
+
+            <!-- Drill Pipe (thinner) -->
+            <rect
+              x="75"
+              y="45"
+              width="50"
+              height="160"
+              fill="#c0c0c0"
+              stroke="#666"
+              stroke-width="2"
+              rx="3"
+            />
+
+            <!-- Annulus (stripe removed) -->
+            <!-- removed blue dashed annulus visual per request -->
+
+            <!-- Annulus (stripe removed) -->
+            <!-- removed blue dashed annulus visual per request -->
+
+            <!-- Down arrow (flow down pipe) -->
+            <g id="down-flow">
+              <line
+                x1="100"
+                y1="80"
+                x2="100"
+                y2="120"
+                stroke="#27ae60"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <polygon points="100,125 96,115 104,115" fill="#27ae60" />
+              <text
+                x="100"
+                y="72"
+                text-anchor="middle"
+                font-size="12"
+                fill="#27ae60"
+                font-weight="bold"
+              >
+                DOWN
+              </text>
+            </g>
+
+            <!-- Up arrow (flow up annulus) - mirrored to opposite side -->
+            <g id="up-flow" transform="translate(10,0)">
+              <line
+                x1="45"
+                y1="80"
+                x2="45"
+                y2="120"
+                stroke="#e74c3c"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <polygon points="45,75 41,85 49,85" fill="#e74c3c" />
+              <text
+                x="45"
+                y="72"
+                text-anchor="middle"
+                font-size="12"
+                fill="#e74c3c"
+                font-weight="bold"
+              >
+                UP
+              </text>
+            </g>
+
+            <!-- Labels -->
+            <text
+              x="100"
+              y="25"
+              font-size="14"
+              font-weight="bold"
+              text-anchor="middle"
+              fill="#E31B23"
+            >
+              Well Schematic
+            </text>
+
+            <!-- Drill Pipe Velocity Output -->
+            <text
+              id="drill-pipe-velocity"
+              x="100"
+              y="140"
+              text-anchor="middle"
+              font-size="10"
+              fill="#27ae60"
+              font-weight="bold"
+            >
+              - m/s
+            </text>
+            <!-- Annulus Velocity Output -->
+            <text
+              id="annulus-velocity-output"
+              x="55"
+              y="140"
+              text-anchor="middle"
+              font-size="10"
+              fill="#e74c3c"
+              font-weight="bold"
+            >
+              - m/s
+            </text>
+          </svg>
         </div>
+      </div>
+
+      <!-- Formula Section -->
+      <div class="formula">
+        <h3>📐 Calculation Formula</h3>
+        <div class="formula-text">
+          Velocity (m/s) = Flow Rate (L/min) ÷ 60 ÷ Area (cm²) ÷ 10,000<br /><br />
+          <strong>Or:</strong> v = Q / (60 × A)<br />
+          where Q = Flow rate in L/min, A = Cross-sectional area in cm²
+        </div>
+      </div>
+
+      <!-- Reynolds Formula Section -->
+      <div class="reynolds-formula hidden" id="reynoldsFormula">
+        <h3>🔬 Reynolds Number Calculations</h3>
+        <div class="formula-text">
+          <strong>Drill Pipe:</strong> Re = (ρ × v × D) / μ<br />
+          <strong>Annulus:</strong> Re = (ρ × v × Dh) / μ<br /><br />
+          where:<br />
+          ρ = Density (SG × 1000 kg/m³)<br />
+          v = Velocity (m/s)<br />
+          D = Pipe inner diameter (m)<br />
+          Dh = Hydraulic diameter (m)<br />
+          μ = Plastic viscosity (PV ÷ 1000 Pa·s)
+        </div>
+      </div>
     </div>
-    
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
