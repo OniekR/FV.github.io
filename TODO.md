@@ -9,10 +9,12 @@ Generated: 2026-01-11
 ## High priority
 
 - [ ] Move Reynolds numbers and calculations into their own section on the page
+
   - Rationale: keeps the schematic visually separate from analytic details and improves discoverability.
   - Notes: extract the Reynolds UI and calculation logic into a self-contained section, with its own heading and `role="region"`.
 
 - [ ] Maintain well schematic horizontally next to flow calculations
+
   - Rationale: keep the well schematic visible while users interact with the flow inputs/outputs.
   - Notes: use a responsive two-column layout; on narrow screens the schematic should still stack but prioritize readability.
 
